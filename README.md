@@ -15,7 +15,7 @@ Clone the Repository
 
     bash
 
-    git clone https://github.com/your-username/file-management-system-angular.git
+    git clone https://github.com/loolishen/File-Management-System-Angular.git
     cd file-management-system
 
 Install Dependencies
