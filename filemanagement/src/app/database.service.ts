@@ -14,7 +14,7 @@ export class DatabaseService {
   // Upload a file
   uploadFile(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/upload-file`, formData);
-  }
+  }  
 
   // Get all files
   getAllFiles(): Observable<any> {

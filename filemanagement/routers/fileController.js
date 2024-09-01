@@ -17,7 +17,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 module.exports = {
-  // Upload a file with any key name
   uploadFile: function (req, res) {
     upload.any()(req, res, async function (err) {
       if (err) {
@@ -28,7 +27,6 @@ module.exports = {
         return res.status(400).json({ error: 'No files were uploaded.' });
       }
 
-      // Save each uploaded file to the database
       const fileSaves = req.files.map(file => {
         const newFile = new File({
           filename: file.filename,
@@ -47,7 +45,6 @@ module.exports = {
     });
   },
 
-  // Get all files
   getAllFiles: async function (req, res) {
     try {
       let files = await File.find({}).exec();
@@ -57,7 +54,6 @@ module.exports = {
     }
   },
 
-  // Get a specific file by ID
   getFileById: async function (req, res) {
     let fileId = req.params.id;
 
@@ -72,7 +68,6 @@ module.exports = {
     }
   },
 
-  // Delete a specific file by ID
   deleteFileById: async function (req, res) {
     let fileId = req.params.id;
 
@@ -82,10 +77,8 @@ module.exports = {
         return res.status(404).json({ error: 'File not found' });
       }
 
-      // Construct the full path to the file
       const filePath = path.join(__dirname, '..', file.filepath);
 
-      // Remove the file from the filesystem
       fs.unlink(filePath, err => {
         if (err) {
           console.error('Error deleting the file:', err);

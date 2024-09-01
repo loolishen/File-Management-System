@@ -1,10 +1,50 @@
-<mat-card class="file-list-container">
-    <mat-card-title>Uploaded Files</mat-card-title>
-    <mat-list>
-      <mat-list-item *ngFor="let file of files">
-        <span>{{ file.filename }} ({{ file.size }} bytes)</span>
-        <button mat-raised-button color="warn" (click)="deleteFile(file._id)">Delete</button>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
-  
+<div class="container">
+  <section class="upload-section">
+    <h2>Upload a New File</h2>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="onSubmit()">Upload</button>
+
+    <div *ngIf="uploadResponse">
+      <h3>Upload Response</h3>
+      <pre>{{ uploadResponse | json }}</pre>
+    </div>
+  </section>
+
+  <section class="list-section">
+    <h2>Uploaded Files</h2>
+    
+    <div class="sorting-controls">
+      <label for="sortCriterion">Sort by:</label>
+      <select id="sortCriterion" (change)="onSortCriterionChange($event)">
+        <option value="filename">Filename (Alphabetical)</option>
+        <option value="uploadDate">Upload Date</option>
+        <option value="size">Size</option>
+      </select>      
+
+      <button (click)="onSortDirectionChange()">
+        {{ sortDirection === 'asc' ? 'Ascending' : 'Descending' }}
+      </button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Size</th>
+          <th>Upload Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of files">
+          <td>{{ file.filename }}</td>
+          <td>{{ file.size }} bytes</td>
+          <td>{{ file.uploadDate | date:'medium' }}</td>
+          <td>
+            <button (click)="deleteFile(file._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -5,11 +5,11 @@
 
   <main>
     <section class="upload-section">
-      <app-upload-file></app-upload-file>
+      <app-upload-file (fileUploaded)="fileListComponent.getAllFiles()"></app-upload-file>
     </section>
     
     <section class="list-section">
-      <app-list-file></app-list-file>
+      <app-list-file #fileListComponent></app-list-file>
     </section>
   </main>
 </div>

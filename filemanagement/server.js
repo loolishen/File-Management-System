@@ -9,15 +9,21 @@ const fileRoutes = require('./routers/fileroutes');
 const app = express();
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:4200', // Adjust this to your frontend's URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// If needed, handle preflight requests
+app.options('*', cors());
+
+app.use(bodyParser.json()); 
 app.use(express.json());
 
 // Route definitions
-app.post('/api/upload', fileRoutes.uploadFile);
-app.get('/api/files', fileRoutes.getAllFiles);
-app.get('/api/files/:id', fileRoutes.getFileById);
-app.delete('/api/files/:id', fileRoutes.deleteFileById);
+app.use('/api', fileRoutes);
 
 // MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/filemanagement', {
