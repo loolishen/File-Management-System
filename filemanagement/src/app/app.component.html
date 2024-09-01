@@ -1,21 +1,15 @@
-<div class="navbar">
-  <div class="container">
-    <a class="logo" routerLink="/">File Management System</a>
-    <nav>
-      <ul>
-        <li><a routerLink="/upload-file" routerLinkActive="active">Upload File</a></li>
-        <li><a routerLink="/files" routerLinkActive="active">View Files</a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
+<div class="container">
+  <header>
+    <h1>File Management System</h1>
+  </header>
 
-<div class="content container">
-  <router-outlet></router-outlet>
+  <main>
+    <section class="upload-section">
+      <app-upload-file></app-upload-file>
+    </section>
+    
+    <section class="list-section">
+      <app-list-file></app-list-file>
+    </section>
+  </main>
 </div>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2024 File Management System. All rights reserved.</p>
-  </div>
-</footer>

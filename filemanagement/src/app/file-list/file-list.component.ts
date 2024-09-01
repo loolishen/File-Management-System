@@ -6,7 +6,7 @@ import { DatabaseService } from '../database.service';
   templateUrl: './list-file.component.html',
   styleUrls: ['./list-file.component.css']
 })
-export class ListFileComponent implements OnInit {
+export class FileListComponent implements OnInit {
 
   files: any[] = [];
 
