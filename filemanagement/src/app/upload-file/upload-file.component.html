@@ -1,0 +1,12 @@
+<div class="upload-container">
+    <h2>Upload a File</h2>
+    <form (submit)="onSubmit()">
+      <input type="file" (change)="onFileSelected($event)" multiple>
+      <button type="submit">Upload</button>
+    </form>
+    <div *ngIf="uploadResponse">
+      <h3>Upload Response</h3>
+      <pre>{{ uploadResponse | json }}</pre>
+    </div>
+  </div>
+  

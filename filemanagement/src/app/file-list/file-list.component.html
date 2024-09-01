@@ -1,0 +1,10 @@
+<div class="file-list-container">
+    <h2>Uploaded Files</h2>
+    <ul>
+      <li *ngFor="let file of files">
+        {{ file.filename }} ({{ file.size }} bytes)
+        <button (click)="deleteFile(file._id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
